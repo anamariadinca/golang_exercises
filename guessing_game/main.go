@@ -1,13 +1,9 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"log"
 	"math/rand"
-	"os"
 	"strconv"
-	"strings"
+	"fmt"
 	"time"
 )
 
@@ -16,11 +12,14 @@ func main() {
 	noOfTries, numberWasGuessed := 0, false
 	rand.Seed(time.Now().UnixNano())
 	numberGenerated := rand.Intn(100) + 1
-	var reader *bufio.Reader = bufio.NewReader(os.Stdin)
 
 	for !numberWasGuessed {
-		input := readFromKeyboard(reader)
-		guessedNumber := convertStringToNumber(input)
+		var guessedNumber int
+		_, err:= fmt.Scan(&guessedNumber)
+		if err != nil {
+			fmt.Errorf("blah")
+			return
+		}
 		if guessedNumber == numberGenerated {
 			fmt.Println("Good job, you guessed it!")
 			numberWasGuessed = true
@@ -31,20 +30,22 @@ func main() {
 
 }
 
-func compareNumbers(guessedNumber int, numberGenerated int, noOfTries int) string {
+func compareNumbers(guessedNumber int, numberGenerated int, noOfTries int) (string, error) {
 	if isNumberValid(guessedNumber) {
 		noOfTries++
-		return takeDecision(guessedNumber, numberGenerated) + "\n" + printNoOfTriesLeft(noOfTries, numberGenerated)
+		takeDecisionMessage, _ := takeDecision(guessedNumber, numberGenerated)
+		printNoOfTriesLeftMessage, _ := printNoOfTriesLeft(noOfTries, numberGenerated)
+		return takeDecisionMessage + "\n" + printNoOfTriesLeftMessage, nil
 	} else {
-		return "Please introduce a valid number; between 1 and 100"
+		return "", fmt.Errorf("Please introduce a valid number; between 1 and 100")
 	}
 }
 
-func printNoOfTriesLeft(noOfTries int, numberGenerated int) string {
+func printNoOfTriesLeft(noOfTries int, numberGenerated int) (string, bool) {
 	if 10-noOfTries-1 > 0 {
-		return "You have " + strconv.Itoa(10 - noOfTries - 1) + " tries left"
+		return "You have " + strconv.Itoa(10 - noOfTries - 1) + " tries left", true
 	} else {
-		return "Sorry. You didn't guess my number. It was: " + strconv.Itoa(numberGenerated)
+		return "Sorry. You didn't guess my number. It was: " + strconv.Itoa(numberGenerated), false
 	}
 }
 
@@ -55,29 +56,12 @@ func isNumberValid(guessedNumber int) bool {
 	return false
 }
 
-func takeDecision(guessedNumber int, numberGenerated int) string {
+func takeDecision(guessedNumber int, numberGenerated int) (string, bool) {
 	if guessedNumber < numberGenerated {
-		return "Oops. Your guess was LOW"
+		return "Oops. Your guess was LOW", false
 
 	} else {
-		return "Oops. Your guess was HIGH"
+		return "Oops. Your guess was HIGH", true
 	}
 
-}
-
-func convertStringToNumber(s string) int {
-	s = strings.TrimSpace(s)
-	guessedNumber, err := strconv.Atoi(s)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return guessedNumber
-}
-
-func readFromKeyboard(reader *bufio.Reader) string {
-	input, err := reader.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
-	}
-	return input
 }
