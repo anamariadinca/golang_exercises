@@ -5,7 +5,8 @@ func twoThatSum(list []int, sum int) (int, int) {
 	key := 0
 	for i := 0; i < len(list)-1; i++ {
 		for j := 1; j < len(list); j++ {
-			if list[i]+list[j] == sum {
+			sumInList := list[i] + list[j]
+			if sumInList == sum {
 				m[key] = [2]int{i, j}
 				key++
 			}
