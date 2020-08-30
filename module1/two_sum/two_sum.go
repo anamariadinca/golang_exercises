@@ -13,7 +13,7 @@ func twoThatSum(list []int, sum int) (int, int) {
 		}
 	}
 	if len(m) == 0 {
-		return -1, -1
+		return -1, 0
 	}
 	return m[0][0], m[0][1]
 }
