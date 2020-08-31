@@ -28,7 +28,7 @@ func countEachPrimeNr(decomposedNumber []int) map[int]int {
 	return countMap
 }
 
-func gcdUsingEuclidean(first int, second int) int {
+func GcdUsingEuclidean(first int, second int) int {
 	for second > 0 {
 		first, second = second, first%second
 	}

@@ -34,7 +34,7 @@ func TestCoveyGCDEuclid(t *testing.T) {
 
 		convey.Convey("We should obtain the same value as expected value", func() {
 			for _, input := range inputs {
-				convey.So(gcdUsingEuclidean(input.first, input.second), convey.ShouldResemble, input.cod)
+				convey.So(GcdUsingEuclidean(input.first, input.second), convey.ShouldResemble, input.cod)
 			}
 		})
 	})
