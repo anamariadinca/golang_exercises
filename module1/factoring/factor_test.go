@@ -28,7 +28,7 @@ func TestCoveyReverseString(t *testing.T) {
 
 		convey.Convey("We should obtain the same value as expected value", func() {
 			for _, input := range inputs {
-				convey.So(factorNumber(input.primes, input.number), convey.ShouldResemble, input.resultExpected)
+				convey.So(FactorNumber(input.primes, input.number), convey.ShouldResemble, input.resultExpected)
 			}
 		})
 	})

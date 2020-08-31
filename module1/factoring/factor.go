@@ -2,7 +2,8 @@ package module1
 
 import "sort"
 
-func factorNumber(primes []int, num int) []int { // 2 3 5 - 30
+//FactorNumber need
+func FactorNumber(primes []int, num int) []int { // 2 3 5 - 30
 	var refactor []int
 	i := len(primes) - 1
 	for i >= 0 {
