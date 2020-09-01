@@ -35,7 +35,7 @@ var inputs = []input{
 	{3735928559, 16, "DEADBEEF"},
 }
 
-func TestCoveyReverseString(t *testing.T) {
+func TestCoveyBaseToDec(t *testing.T) {
 	convey.Convey("For all the given tests from array", t, func() {
 
 		convey.Convey("We should obtain the same value as expected value", func() {

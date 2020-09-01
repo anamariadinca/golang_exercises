@@ -23,7 +23,7 @@ var inputs = []input{
 	{tenPrimes, 4, []int{2, 2}},
 }
 
-func TestCoveyReverseString(t *testing.T) {
+func TestCoveyFactor(t *testing.T) {
 	convey.Convey("For all the given tests from array", t, func() {
 
 		convey.Convey("We should obtain the same value as expected value", func() {

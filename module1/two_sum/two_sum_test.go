@@ -19,7 +19,7 @@ var inputs = []input{
 	{[]int{10, 1, 12, 3, 7, 2, 2, 1}, 4, true},
 }
 
-func TestCoveyReverseString(t *testing.T) {
+func TestCoveyFindTwoSum(t *testing.T) {
 	convey.Convey("For all the given tests from array", t, func() {
 
 		convey.Convey("We should obtain the same value as expected value", func() {

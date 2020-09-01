@@ -28,7 +28,7 @@ var inputs = []input{
 	{41, 165580141},
 }
 
-func TestCoveyReverseString(t *testing.T) {
+func TestCoveyFibonacci(t *testing.T) {
 	convey.Convey("For all the given tests from array", t, func() {
 
 		convey.Convey("We should obtain the same value as expected value", func() {
